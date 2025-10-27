@@ -108,4 +108,28 @@
                 // ... (error handling remains the same)
             });
         };
+          /**
+         * Updates the global Chart.js instances with the latest SVT data.
+         * @param {Array<Object>} data - Array of {time, potential, energy} objects.
+         */
+        const updateCharts = (data) => {
+            const labels = data.map(d => d.time);
+            const potentials = data.map(d => d.potential);
+            const energies = data.map(d => d.energy);
 
+            if (!phiChart || !energyChart) {
+                // Initialize if they don't exist yet
+                initializeCharts(data);
+                return;
+            }
+
+            // Update PHI Chart
+            phiChart.data.labels = labels;
+            phiChart.data.datasets[0].data = potentials;
+            phiChart.update();
+
+            // Update Energy Chart
+            energyChart.data.labels = labels;
+            energyChart.data.datasets[0].data = energies;
+            energyChart.update();
+        };
