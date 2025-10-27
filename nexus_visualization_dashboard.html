@@ -1,0 +1,32 @@
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+            <div class="card">
+            <h2 class="title-gothic text-xl mb-3">Protocol Telemetry (Live)</h2>
+            
+            <div class="mb-6">
+                <h3 class="text-sm font-bold text-accent-green mb-1">Protocol Health Index (PHI)</h3>
+                <canvas id="phi-chart" class="w-full h-48"></canvas>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-bold text-hippie-bright mb-1">Recent Energy Signatures</h3>
+                <canvas id="energy-chart" class="w-full h-48"></canvas>
+            </div>
+        </div>
+        
+        ```
+
+---
+
+## II. Implementation: Chart Initialization and Real-Time Updates
+
+Now, we update your main JavaScript block to handle the chart initialization and link them to the real-time Firestore stream.
+
+### 3. Global Chart Variables
+
+Declare the chart objects globally within your `<script type="module">` block, so the update function can access them:
+
+```javascript
+// ... existing variables (db, auth, userId, etc.)
+let phiChart, energyChart = null; // NEW: Chart objects
+// ...
+    
